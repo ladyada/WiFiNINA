@@ -19,14 +19,45 @@
 #include <SPI.h>
 #include <WiFiNINA.h>
 
-// if the wifi definition isnt in the board variant
-#if !defined(SPIWIFI_SS)
-  // Don't change the names of these #define's! they match the variant ones
-  #define SPIWIFI_SS       10
-  #define SPIWIFI_ACK       7
-  #define ESP32_RESETN      5
-  #define ESP32_GPIO0       6  // Helpful for servers
-  #define SPIWIFI          SPI
+// Configure the pins used for the ESP32 connection
+#if defined(ADAFRUIT_FEATHER_M4_EXPRESS) || \
+	defined(ADAFRUIT_FEATHER_M0_EXPRESS) || \
+	defined(ARDUINO_AVR_FEATHER32U4) || \
+	defined(ARDUINO_NRF52840_FEATHER)
+  #define SPIWIFI       SPI  // The SPI port
+  #define SPIWIFI_SS    13   // Chip select pin
+  #define ESP32_RESETN  12   // Reset pin
+  #define SPIWIFI_ACK   11   // a.k.a BUSY or READY pin
+  #define ESP32_GPIO0   10
+
+#elif defined(ARDUINO_AVR_FEATHER328P) 
+  #define SPIWIFI       SPI  // The SPI port
+  #define SPIWIFI_SS     4   // Chip select pin
+  #define ESP32_RESETN   3   // Reset pin
+  #define SPIWIFI_ACK    2   // a.k.a BUSY or READY pin
+  #define ESP32_GPIO0   -1
+
+#elif defined(ARDUINO_NRF52832_FEATHER )
+  #define SPIWIFI       SPI  // The SPI port
+  #define SPIWIFI_SS    16  // Chip select pin
+  #define ESP32_RESETN  15  // Reset pin
+  #define SPIWIFI_ACK    7  // a.k.a BUSY or READY pin
+  #define ESP32_GPIO0   -1
+
+#elif defined(TEENSYDUINO) 
+  #define SPIWIFI       SPI  // The SPI port
+  #define SPIWIFI_SS     5   // Chip select pin
+  #define ESP32_RESETN   6   // Reset pin
+  #define SPIWIFI_ACK    9   // a.k.a BUSY or READY pin
+  #define ESP32_GPIO0   -1
+
+// If you're using a FeatherWing, shield, or breakout, configure it below:
+#else
+  #define SPIWIFI       SPI  // The SPI port
+  #define SPIWIFI_SS     10  // Chip select pin
+  #define ESP32_RESETN    5  // Reset pin
+  #define SPIWIFI_ACK     7  // a.k.a BUSY or READY pin
+  #define ESP32_GPIO0    -1
 #endif
 
 
