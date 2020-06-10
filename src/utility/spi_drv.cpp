@@ -23,6 +23,15 @@
 #include "utility/spi_drv.h"
 #include "pins_arduino.h"
 
+#ifdef TEENSYDUINO
+#define SPIWIFI      SPI   // The SPI port
+#define SPIWIFI_SS     5   // Chip select pin
+#define ESP32_RESETN   6   // Reset pin
+#define SPIWIFI_ACK    9   // a.k.a BUSY or READY pin
+#define ESP32_GPIO0   -1
+#endif
+
+
 #ifdef ARDUINO_SAMD_MKRVIDOR4000
 
 // check if a bitstream is already included

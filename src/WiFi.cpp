@@ -46,8 +46,8 @@ void WiFiClass::setLEDs(uint8_t red, uint8_t green, uint8_t blue) {
   WiFiDrv::pinMode(25, OUTPUT);
   WiFiDrv::pinMode(26, OUTPUT);
   WiFiDrv::pinMode(27, OUTPUT);
-  WiFiDrv::analogWrite(25, red);
-  WiFiDrv::analogWrite(26, green);
+  WiFiDrv::analogWrite(26, red);
+  WiFiDrv::analogWrite(25, green);
   WiFiDrv::analogWrite(27, blue);
 }
 
